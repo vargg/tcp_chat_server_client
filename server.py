@@ -25,7 +25,6 @@ class Server:
 
     async def downtime_checker(self, writer):
         while True:
-            print('checker')
             addr = self.get_addr(writer)
             time_gap = time.time() - self.last_msg_time[addr]
             if time_gap > 30:
@@ -42,7 +41,6 @@ class Server:
     async def receiver(self, reader, writer):
         addr = self.get_addr(writer)
         while writer in self.connected_clients:
-            print('reciver')
             data = await reader.read(1000)
             if not data:
                 break

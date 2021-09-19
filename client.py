@@ -10,6 +10,9 @@ class Client:
     async def receiver(reader, writer):
         while True:
             data = await reader.read(1000)
+            if not data:
+                print('Server is offline.')
+                break
             print(f'{data.decode("utf-8")}')
             if data.decode("utf-8") == (
                 'Close connection: Idle timeout expired.'
