@@ -48,18 +48,6 @@ class Client:
             await task_send
         except ConnectionRefusedError:
             print('This server is offline.')
-        else:
-            task_receive = asyncio.get_event_loop().create_task(
-                self.receiver(
-                    reader,
-                    writer
-                )
-            )
-            task_send = asyncio.get_event_loop().create_task(
-                self.sender(writer)
-            )
-            await task_receive
-            await task_send
 
 
 if __name__ == '__main__':
